@@ -56,9 +56,9 @@ class TestAPIEndpoints(unittest.TestCase):
         time.sleep(1)  # Wait for Elasticsearch to index the document
         response = requests.get(f"{BASE_URL}/search?q=test&tenant=tenant1")
         self.assertEqual(response.status_code, 200)
-        self.assertIsInstance(response.json(), list)
+        self.assertIsInstance(response.json(), dict)
         # Filter results to ensure the correct document is found
-        matching_docs = [doc for doc in response.json() if doc.get("id") == self.doc_id]
+        matching_docs = [doc for doc in response.json()["results"] if doc.get("id") == self.doc_id]
         self.assertTrue(matching_docs, "Document not found in search results")
         self.assertEqual(matching_docs[0].get("id"), self.doc_id)
 
