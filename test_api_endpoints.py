@@ -3,7 +3,7 @@ import requests
 import uuid
 import time
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://localhost"
 
 class TestAPIEndpoints(unittest.TestCase):
 

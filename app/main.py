@@ -1,3 +1,5 @@
+import os 
+
 from fastapi import FastAPI, HTTPException, Request, Depends
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -7,6 +9,7 @@ from rate_limiter import limiter
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from db import es, cache
+
 
 app = FastAPI(title="Distributed Document Search Service")
 app.state.limiter = limiter
@@ -78,4 +81,11 @@ def health():
     except Exception:
         print("redisexception", e)
 
-    return {"status": "ok", "elasticsearch": es_status, "redis": redis_status}
+    return {
+        "status": "ok",
+        "elasticsearch": es_status,
+        "redis": redis_status,
+        "version": {
+            "branch": os.getenv("APP_BRANCH", "unknown")
+        }
+    }
