@@ -41,7 +41,7 @@ This will build the Docker images and start the service along with Elasticsearch
 Check if the service, Elasticsearch, and Redis are running.
 
 ```bash
-curl http://localhost:8000/health
+curl http://localhost/health
 ```
 
 **Response:**
@@ -61,7 +61,7 @@ curl http://localhost:8000/health
 Create a new document in the system.
 
 ```bash
-curl -X POST http://localhost:8000/documents \
+curl -X POST http://localhost/documents \
 -H "Content-Type: application/json" \
 -d '{
   "id": "doc1",
@@ -87,7 +87,7 @@ curl -X POST http://localhost:8000/documents \
 Retrieve a document by ID.
 
 ```bash
-curl http://localhost:8000/documents/doc1
+curl http://localhost/documents/doc1
 ```
 
 **Response:**
@@ -108,7 +108,7 @@ curl http://localhost:8000/documents/doc1
 Delete a document by ID.
 
 ```bash
-curl -X DELETE http://localhost:8000/documents/doc1
+curl -X DELETE http://localhost/documents/doc1
 ```
 
 **Response:**
@@ -127,7 +127,7 @@ curl -X DELETE http://localhost:8000/documents/doc1
 Search for documents by query and tenant.
 
 ```bash
-curl "http://localhost:8000/search?q=test&tenant=tenant1"
+curl "http://localhost/search?q=test&tenant=tenant1"
 ```
 
 **Response:**
