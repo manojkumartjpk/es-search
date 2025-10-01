@@ -4,3 +4,4 @@ elasticsearch==8.11.1
 redis
 pydantic
 slowapi
+requests
